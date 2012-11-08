@@ -1,0 +1,817 @@
+{
+    "meta": {
+      "protocol": 39,
+      "version": "1.3.2"
+    },
+    "00": {
+        "name": "Keep Alive",
+        "source": "B",
+        "structure": [
+            ["int","keepAliveId"]
+        ]
+    },
+    "01": {
+        "name": "Login Request",
+        "source": "S",
+        "structure": [
+            ["int", "entityId"],
+            ["string", "levelType", {
+                "default": "default"
+            }],
+            ["byte", "gameMode", {
+                "default": 0
+            }],
+            ["byte", "dimension", {
+                "default": 0
+            }],
+            ["byte", "difficulty", {
+                "default": 0
+            }],
+            ["byte", "", {
+                "used": false,
+                "default": 0
+            }],
+            ["byte", "maxPlayers", {
+                "default": 2
+            }]
+        ]
+    },
+    "02": {
+        "name": "Handshake",
+        "source": "C",
+        "structure": [
+            ["byte", "protocolVersion"],
+            ["string", "username"],
+            ["string", "hostname"],
+            ["uint", "port"]
+        ]
+    },
+    "03": {
+        "name": "Chat Message",
+        "source": "B",
+        "structure": [
+            ["string", "chatMessage", {
+                "default": ""
+            }]
+        ]
+    },
+    "04": {
+        "name": "Time Update",
+        "source": "S",
+        "structure": [
+            ["long", "time"]
+        ]
+    },
+    "05": {
+        "name": "Entity Equipment",
+        "source": "S",
+        "structure": [
+            ["int", "entityId"],
+            ["short", "slot"],
+            ["slot", "slotData"]
+        ]
+    },
+    "06": {
+        "name": "Update Compass",
+        "source": "S",
+        "structure": [
+          ["int", "positionX"],
+          ["int", "positionY"],
+          ["int", "positionZ"]
+        ]
+    },
+    "07": {
+        "name": "Interact with Entity",
+        "source": "C",
+        "structure": [
+            ["int", "userId", {
+                "used": false
+            }],
+            ["int", "entityId"],
+            ["bool", "leftClicked"]
+        ]
+    },
+    "08": {
+        "name": "Update Health",
+        "source": "S",
+        "structure": [
+            ["short", "health"],
+            ["short", "food"],
+            ["float", "foodSaturation"]
+        ]
+    },
+    "09": {
+        "name": "Respawn",
+        "source": "S",
+        "structure": [
+            ["int", "dimension", {
+                "default": 0
+            }],
+            ["byte", "difficulty", {
+                "default": 0
+            }],
+            ["byte", "gameMode", {
+                "default": 0
+            }],
+            ["short", "worldHeight", {
+                "default": 256,
+                "used": false
+            }],
+            ["string", "levelType", {
+                "default": "default"
+            }]
+        ]
+    },
+    "0A": {
+        "name": "Player Flying",
+        "source": "C",
+        "structure": [
+            ["bool", "onGround"]
+        ]
+    },
+    "0B": {
+        "name": "Player Position",
+        "source": "C",
+        "structure": [
+            ["double", "positionX"],
+            ["double", "positionY"],
+            ["double", "stance"],
+            ["double", "positionZ"],
+            ["bool", "onGround"]
+        ]
+    },
+    "0C": {
+        "name": "Player Look",
+        "source": "C",
+        "structure": [
+            ["float", "yaw"],
+            ["float", "pitch"],
+            ["bool", "onGround"]
+        ]
+    },
+    "0D": {
+        "name": "Player Position & Look",
+        "source": "B",
+        "structure": {
+            "C": [
+                ["double", "positionX"],
+                ["double", "positionY"],
+                ["double", "stance"],
+                ["double", "positionZ"],
+                ["float", "yaw"],
+                ["float", "pitch"],
+                ["bool", "onGround"]
+            ],
+            "S": [
+                ["double", "positionX"],
+                ["double", "stance"],
+                ["double", "positionY"],
+                ["double", "positionZ"],
+                ["float", "yaw"],
+                ["float","pitch"],
+                ["bool", "onGround"]
+            ]
+        }
+    },
+    "0E": {
+        "name": "Player Digging",
+        "source": "C",
+        "structure": [
+            ["byte", "status"],
+            ["int", "positionX"],
+            ["byte", "positionY"],
+            ["int", "positionZ"],
+            ["byte", "face"]
+        ]
+    },
+    "0F": {
+        "name": "Player Block Placement",
+        "source": "C",
+        "structure": [
+            ["int", "positionX"],
+            ["ubyte", "positionY"],
+            ["int", "positionZ"],
+            ["byte", "direction"],
+            ["slot", "slot"],
+            ["byte", "cursorX"],
+            ["byte", "cursorY"],
+            ["byte", "cursorZ"]
+        ]
+    },
+    "10": {
+        "name": "Held Item Change",
+        "source": "C",
+        "structure": [
+            ["short", "slotId"]
+        ]
+    },
+    "11": {
+        "name": "Use Bed",
+        "source": "S",
+        "structure": [
+            ["int", "entityId"],
+            ["byte", "", {
+                "default": 0,
+                "used": false
+            }],
+            ["int", "positionX"],
+            ["byte", "positionY"],
+            ["int", "positionZ"]
+        ]
+    },
+    "12": {
+        "name": "Entity Animation",
+        "source": "B",
+        "structure": [
+            ["int", "entityId"],
+            ["byte", "animation"]
+        ]
+    },
+    "13": {
+        "name": "Entity Action",
+        "source": "C",
+        "structure": [
+            ["int", "userId"],
+            ["byte", "action"]
+        ]
+    },
+    "14": {
+        "name": "Spawn Player Entity",
+        "source": "S",
+        "structure": [
+            ["int","entityId"],
+            ["string", "name"],
+            ["int", "positionX"],
+            ["int", "positionY"],
+            ["int", "positionZ"],
+            ["byte", "yaw"],
+            ["byte", "pitch"],
+            ["short", "heldItem"],
+            ["meta", "meta"]
+        ]
+    },
+    "15": {
+        "name": "Spawn Drop Entity",
+        "source": "S",
+        "structure": [
+            ["int", "entityId"],
+            ["short", "item"],
+            ["byte", "count"],
+            ["short", "data"],
+            ["int", "positionX"],
+            ["int", "positionY"],
+            ["int", "positionZ"],
+            ["byte", "rotation"],
+            ["byte", "pitch"],
+            ["byte", "roll"]
+        ]
+    },
+    "16": {
+        "name": "Entity Collect Drop",
+        "source": "S",
+        "structure": [
+            ["int", "collectedEntityId"],
+            ["int", "collectorEntityId"]
+        ]
+    },
+    "17": {
+        "name": "Spawn Vehicle Entity",
+        "source": "S",
+        "structure": [
+            ["int", "entityId"],
+            ["byte", "type"],
+            ["int", "positionX"],
+            ["int", "positionY"],
+            ["int", "positionZ"],
+            ["int", "data"],
+            [
+                [
+                    ["short", "velocityX"],
+                    ["short", "velocityY"],
+                    ["short", "velocityZ"]
+                ], "", {
+                    "condition": {
+                        "field": "data",
+                        "compare": ">",
+                        "value": 0
+                    }
+                }
+            ]
+        ]
+    },
+    "18": {
+        "name": "Spawn Mob Entity",
+        "source": "S",
+        "structure": [
+            ["int", "entityId"],
+            ["byte", "type"],
+            ["int", "positionX"],
+            ["int", "positionY"],
+            ["int", "positionZ"],
+            ["byte", "yaw"],
+            ["byte", "pitch"],
+            ["byte", "headYaw"],
+            ["short", "velocityZ"],
+            ["short", "velocityX"],
+            ["short", "velocityY"],
+            ["meta", "meta"]
+        ]
+    },
+    "19": {
+        "name": "Spawn Painting Entity",
+        "source": "S",
+        "structure": [
+            ["int", "entityId"],
+            ["string", "title"],
+            ["int", "positionX"],
+            ["int", "positionY"],
+            ["int", "positionZ"],
+            ["int", "direction"]
+        ]
+    },
+    "1A": {
+        "name": "Spawn Orb Entity",
+        "source": "S",
+        "structure": [
+            ["int", "entityId"],
+            ["int", "positionX"],
+            ["int", "positionY"],
+            ["int", "positionZ"],
+            ["short", "count"]
+        ]
+    },
+    "1C": {
+        "name": "Entity Velocity",
+        "source": "S",
+        "structure": [
+            ["int", "entityId"],
+            ["short", "velocityX"],
+            ["short", "velocityY"],
+            ["short", "velocityZ"]
+        ]
+    },
+    "1D": {
+        "name": "Destroy Entity",
+        "source": "S",
+        "structure": [
+            ["byte:int", "entityIds"]
+        ]
+    },
+    "1E": {
+        "name": "Entity",
+        "source": "S",
+        "structure": [
+            ["int", "entityId"]
+        ]
+    },
+    "1F": {
+        "name": "Entity Relative Move",
+        "source": "S",
+        "structure": [
+            ["int", "entityId"],
+            ["byte", "offsetX"],
+            ["byte", "offsetY"],
+            ["byte", "offsetZ"]
+        ]
+    },
+    "20": {
+        "name": "Entity Look",
+        "source": "S",
+        "structure": [
+            ["int", "entityId"],
+            ["byte", "yaw"],
+            ["byte", "pitch"]
+        ]
+    },
+    "21": {
+        "name": "Entity Relative Move & Look",
+        "source": "S",
+        "structure": [
+            ["int", "entityId"],
+            ["byte", "offsetX"],
+            ["byte", "offsetY"],
+            ["byte", "offsetZ"],
+            ["byte", "yaw"],
+            ["byte", "pitch"]
+        ]
+    },
+    "22": {
+        "name": "Entity Teleport",
+        "source": "S",
+        "structure": [
+            ["int", "entityId"],
+            ["int", "positionX"],
+            ["int", "positionY"],
+            ["int", "positionZ"],
+            ["byte", "yaw"],
+            ["byte", "pitch"]        ]
+    },
+    "23": {
+        "name": "Entity Head Look",
+        "source": "S",
+        "structure": [
+            ["int", "entityId"],
+            ["byte", "headYaw"]
+        ]
+    },
+    "26": {
+        "name": "Entity Status",
+        "source": "S",
+        "structure": [
+            ["int", "entityId"],
+            ["byte", "status"]
+        ]
+    },
+    "27": {
+        "name": "Attach Entity",
+        "source": "S",
+        "structure": [
+            ["int", "entityId"],
+            ["int", "vehicleId"]
+        ]
+    },
+    "28": {
+        "name": "Entity Metadata",
+        "source": "S",
+        "structure": [
+            ["int", "entityId"],
+            ["meta", "metaData"]
+        ]
+    },
+    "29": {
+        "name": "Entity Effect",
+        "source": "S",
+        "structure": [
+            ["int", "entityId"],
+            ["byte", "effect"],
+            ["byte", "amplifier"],
+            ["short", "duration"]
+        ]
+    },
+    "2A": {
+        "name": "Remove Entity Effect",
+        "source": "S",
+        "structure": [
+            ["int", "entityId"],
+            ["byte", "effect"]
+        ]
+    },
+    "2B": {
+        "name": "Update Experience",
+        "source": "S",
+        "structure": [
+            ["float", "levelExp"],
+            ["short", "level"],
+            ["short", "total"]
+        ]
+    },
+    "33": {
+        "name": "Chunk Data",
+        "source": "S",
+        "structure": [
+            ["int", "chunkX"],
+            ["int", "chunkZ"],
+            ["bool", "groundUpContinuous"],
+            ["ushort", "primaryBitmap"],
+            ["ushort", "addBitmap"],
+            ["int:byte", "chunkData"]
+        ]
+    },
+    "34": {
+        "name": "Multi Block Change",
+        "source": "S",
+        "structure": [
+            ["int", "chunkX"],
+            ["int", "chunkZ"],
+            ["int:byte", "data"]
+        ]
+    },
+    "35": {
+        "name": "Block Change",
+        "source": "S",
+        "structure": [
+            ["int", "positionX"],
+            ["byte", "positionY"],
+            ["int", "positionZ"],
+            ["short", "blockType"],
+            ["byte", "blockMeta"]
+        ]
+    },
+    "36": {
+        "name": "Block Action",
+        "source": "S",
+        "structure": [
+            ["int", "positionX"],
+            ["short", "positionY"],
+            ["int", "positionZ"],
+            ["byte", "blockAction1"],
+            ["byte", "blockAction2"],
+            ["short", "blockId"]
+        ]
+    },
+    "37": {
+        "name": "Block Break Animation",
+        "source": "S",
+        "structure": [
+            ["int", "entityId"],
+            ["int", "positionX"],
+            ["int", "positionY"],
+            ["int", "positionZ"],
+            ["byte", "stage"]
+        ]
+    },
+    "38": {
+        "name": "Chunk Data Bulk",
+        "source": "S",
+        "structure": [
+            ["short", "chunkCount"],
+            ["int:byte", "chunkData"],
+            [
+                [
+                    ["int", "chunkX"],
+                    ["int", "chunkZ"],
+                    ["short", "primaryBitmap"],
+                    ["short", "addBitmap"]
+                ], "chunkMeta", {
+                    "times": "chunkCount"
+                }
+            ]
+        ]
+    },
+    "3C": {
+        "name": "Explosion",
+        "source": "S",
+        "structure": [
+            ["double", "positionX"],
+            ["double", "positionY"],
+            ["double", "positionZ"],
+            ["float", "radius"],
+            ["int:byte", "explosions"],
+            ["float", "", {
+                "default": 0,
+                "used": false
+            }],
+            ["float", "", {
+                "default": 0,
+                "used": false
+            }],
+            ["float", "", {
+                "default": 0,
+                "used": false
+            }]
+        ]
+    },
+    "3D": {
+        "name": "World Effect",
+        "source": "S",
+        "structure": [
+            ["int", "effect"],
+            ["int", "positionX"],
+            ["byte", "positionY"],
+            ["int", "positionZ"],
+            ["int", "data"]
+        ]
+    },
+    "3E": {
+        "name": "Named Sound Effect",
+        "source": "S",
+        "structure": [
+            ["string", "name"],
+            ["int", "positionX"],
+            ["int", "positionY"],
+            ["int", "positionZ"],
+            ["float", "volume"],
+            ["byte", "pitch"]
+        ]
+    },
+    "46": {
+        "name": "Update Game State",
+        "source": "S",
+        "structure": [
+            ["byte", "reason"],
+            ["byte", "mode", {
+                "condition": {
+                    "field": "reason",
+                    "compare": "==",
+                    "value": 3
+                },
+                "default": 0
+            }]
+        ]
+    },
+    "47": {
+        "name": "Lightning",
+        "source": "S",
+        "structure": [
+            ["int", "entityId"],
+            ["bool", "", {
+                "default": true,
+                "used": false
+            }],
+            ["int", "positionX"],
+            ["int", "positionY"],
+            ["int", "positionZ"]
+        ]
+    },
+    "64": {
+        "name": "Open Window",
+        "source": "S",
+        "structure": [
+            ["byte", "windowId"],
+            ["byte", "inventoryType"],
+            ["string", "title"],
+            ["byte", "slots"]
+        ]
+    },
+    "65": {
+        "name": "Close Window",
+        "source": "B",
+        "structure": [
+            ["byte", "windowId"]
+        ]
+    },
+    "66": {
+        "name": "Click Window",
+        "source": "C",
+        "structure": [
+            ["byte", "windowId"],
+            ["short", "slot"],
+            ["byte", "mouseButton"],
+            ["short", "actionId"],
+            ["bool", "shift"],
+            ["slot", "target"]
+        ]
+    },
+    "67": {
+        "name": "Set Slot",
+        "source": "S",
+        "structure": [
+            ["byte", "windowId"],
+            ["short", "slotId"],
+            ["slot", "slotValue"]
+        ]
+    },
+    "68": {
+        "name": "Set Window Items",
+        "source": "S",
+        "structure": [
+            ["byte", "windowId"],
+            ["short:slot", "changes"]
+        ]
+    },
+    "69": {
+        "name": "Update Window Property",
+        "source": "S",
+        "structure": [
+            ["byte", "windowId"],
+            ["short", "property"],
+            ["short", "value"]
+        ]
+    },
+    "6A": {
+        "name": "Confirm Transaction",
+        "source": "B",
+        "structure": [
+            ["byte", "windowId"],
+            ["short", "actionId"],
+            ["bool", "accepted"]
+        ]
+    },
+    "6B": {
+        "name": "Creative Inventory Action",
+        "source": "B",
+        "structure": [
+            ["short", "slotId"],
+            ["slot", "slotValue"]
+        ]
+    },
+    "6C": {
+        "name": "Enchant Item",
+        "source": "C",
+        "structure": [
+            ["byte", "windowId"],
+            ["byte", "enchantment"]
+        ]
+    },
+    "82": {
+        "name": "Update Sign",
+        "source": "B",
+        "structure": [
+            ["int", "positionX"],
+            ["short", "positionY"],
+            ["int", "positionZ"],
+            ["string", "line1"],
+            ["string", "line2"],
+            ["string", "line3"],
+            ["string", "line4"]
+        ]
+    },
+    "83": {
+        "name": "Item Data",
+        "source": "S",
+        "structure": [
+            ["short", "itemType"],
+            ["short", "itemId"],
+            ["byte:byte", "data"]
+        ]
+    },
+    "84": {
+        "name": "Update Tile Entity",
+        "source": "S",
+        "structure": [
+            ["int", "positionX"],
+            ["short", "positionY"],
+            ["int", "positionZ"],
+            ["short:byte", "data"]
+        ]
+    },
+    "C8": {
+        "name": "Increment Statistic",
+        "source": "S",
+        "structure": [
+            ["int", "statisticId"],
+            ["byte", "amount"]
+        ]
+    },
+    "C9":{
+        "name": "Player List Item",
+        "source": "S",
+        "structure": [
+            ["string", "playerName"],
+            ["bool", "online"],
+            ["short", "ping"]
+        ]
+    },
+    "CA": {
+        "name": "Player Abilities",
+        "source": "B",
+        "structure": [
+            ["byte", "flags"],
+            ["byte", "flyingSpeed"],
+            ["byte", "runningSpeed"]
+        ]
+    },
+    "CB": {
+        "name": "Tab Complete",
+        "source": "B",
+        "structure": [
+            ["string", "text", {
+                "default": ""
+            }]
+        ]
+    },
+    "CC": {
+        "name": "Client Settings",
+        "source": "C",
+        "structure": [
+            ["string", "locale"],
+            ["byte", "viewDistance"],
+            ["byte", "chatFlags"],
+            ["byte", "difficulty"]
+        ]
+    },
+    "CD": {
+        "name": "Client Status",
+        "source": "C",
+        "structure": [
+            ["byte", "payload"]
+        ]
+    },
+    "FA": {
+        "name": "Plugin Message",
+        "source": "B",
+        "structure": [
+            ["string", "channel"],
+            ["short:byte", "payload"]
+        ]
+    },
+    "FC": {
+        "name": "Encryption Key Response",
+        "source": "B",
+        "structure": [
+            ["short:byte", "sharedSecret"],
+            ["short:byte", "verifyKey"]
+        ]
+    },
+    "FD": {
+        "name": "Encryption Key Request",
+        "source": "S",
+        "structure": [
+            ["string", "serverId"],
+            ["short:byte", "publicKey"],
+            ["short:byte", "verifyKey"]
+        ]
+    },
+    "FE": {
+        "name": "Server Ping",
+        "source": "C",
+        "structure": []
+    },
+    "FF": {
+        "name": "Disconnect/Kick",
+        "source": "B",
+        "structure": [
+            ["string", "reason"]
+        ]
+    }
+}
