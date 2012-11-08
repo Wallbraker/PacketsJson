@@ -1,7 +1,7 @@
 {
     "meta": {
-      "protocol": 39,
-      "version": "1.3.2"
+      "protocol": 48,
+      "version": "1.4.3"
     },
     "00": {
         "name": "Keep Alive",
@@ -59,6 +59,7 @@
         "name": "Time Update",
         "source": "S",
         "structure": [
+            ["long", "ageOfWorld"],
             ["long", "time"]
         ]
     },
@@ -255,9 +256,7 @@
         "source": "S",
         "structure": [
             ["int", "entityId"],
-            ["short", "item"],
-            ["byte", "count"],
-            ["short", "data"],
+            ["slot", "item"],
             ["int", "positionX"],
             ["int", "positionY"],
             ["int", "positionZ"],
@@ -569,7 +568,8 @@
             ["int", "positionX"],
             ["byte", "positionY"],
             ["int", "positionZ"],
-            ["int", "data"]
+            ["int", "data"],
+            ["bool", "valumeDecrease"]
         ]
     },
     "3E": {
@@ -767,7 +767,8 @@
             ["string", "locale"],
             ["byte", "viewDistance"],
             ["byte", "chatFlags"],
-            ["byte", "difficulty"]
+            ["byte", "difficulty"],
+            ["bool", "showCape"]
         ]
     },
     "CD": {
@@ -805,7 +806,12 @@
     "FE": {
         "name": "Server Ping",
         "source": "C",
-        "structure": []
+        "structure": [
+            ["byte", "special", {
+                "default": 1,
+                "optional": true
+            }]
+        ]
     },
     "FF": {
         "name": "Disconnect/Kick",
