@@ -28,8 +28,8 @@
                 "default": 0
             }],
             ["byte", "", {
-                "used": false,
-                "default": 0
+                "default": 0,
+                "used": false
             }],
             ["byte", "maxPlayers", {
                 "default": 2
@@ -86,6 +86,7 @@
         "source": "C",
         "structure": [
             ["int", "userId", {
+                "default": 0,
                 "used": false
             }],
             ["int", "entityId"],
@@ -656,7 +657,11 @@
         "source": "S",
         "structure": [
             ["byte", "windowId"],
-            ["short:slot", "changes"]
+            ["short", "count"],
+            ["slot", "changes", {
+                    "times": "count"
+                }
+            ]
         ]
     },
     "69": {
@@ -809,7 +814,7 @@
         "structure": [
             ["byte", "special", {
                 "default": 1,
-                "optional": true
+                "used": false
             }]
         ]
     },
